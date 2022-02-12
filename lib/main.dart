@@ -40,20 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Icon(Icons.access_alarm_outlined),
-                  Icon(Icons.access_alarm_outlined),
-                  Icon(Icons.access_alarm_outlined),
-                  Icon(Icons.access_alarm_outlined),
-                ],
-              )),
-          const Spacer(
-            flex: 8,
+          Container(
+            width: double.infinity,
+            height: 200,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Icon(Icons.access_alarm_outlined),
+                Icon(Icons.access_alarm_outlined),
+                Icon(Icons.access_alarm_outlined),
+                Icon(Icons.access_alarm_outlined),
+              ],
+            ),
+          ),
+          Container(
+            width: 100,
+            decoration: const BoxDecoration(color: Colors.red),
+            child: const Text("423",textAlign: TextAlign.center,),
           )
         ],
       ),
