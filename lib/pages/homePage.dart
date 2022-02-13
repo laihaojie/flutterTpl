@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tpl/components/button/button.dart';
+import 'package:flutter_tpl/utils/util.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +39,10 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: Column(
           children: [
-            const Text("首页"),
+            Text(
+              "首页",
+              style: TextStyle(color: cl("#000")),
+            ),
             ElButton(
               "text",
               onPressed: fun,
