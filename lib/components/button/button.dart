@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class ButtonType {
-  static const String nomarl = "nomarl";
-  static const String small = "small";
-  static const String large = "large";
+enum ButtonType {
+  nomarl,
+  small,
+  large,
 }
 
 class ElButton extends StatelessWidget {
@@ -19,7 +18,7 @@ class ElButton extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final String type;
+  final ButtonType type;
 
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
@@ -29,7 +28,8 @@ class ElButton extends StatelessWidget {
       return ElevatedButton(
           onPressed: onPressed,
           style: ButtonStyle(
-              padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(60, 0, 60, 0))),
+              padding: MaterialStateProperty.all(
+                  const EdgeInsets.fromLTRB(60, 0, 60, 0))),
           child: Text(text));
     }
     if (type == ButtonType.small) {
