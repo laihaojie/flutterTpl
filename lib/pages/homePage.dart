@@ -5,6 +5,7 @@ import 'package:flutter_tpl/components/button/button.dart';
 import 'package:flutter_tpl/models/test.dart';
 import 'package:flutter_tpl/request/request.dart';
 import 'package:flutter_tpl/request2/http_request.dart';
+import 'package:flutter_tpl/utils/storage.dart';
 
 import 'package:flutter_tpl/utils/util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,10 +18,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late String test;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    test = SpUtil().localGet("test") ?? "";
   }
 
   final Map mp = {"1": "首页", "2": "我的"};
@@ -46,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
           children: [
             Text(
-              "首页",
+              "首页$test",
               style: TextStyle(color: Utils.cl("#000")),
             ),
             ElButton(
@@ -60,10 +64,18 @@ class _HomePageState extends State<HomePage> {
                   //     '/api/account/test');
                   // print(VideoSearch.fromJson(response['data']).name);
 
-                  // dynamic response = await get("/api/account/test");
-                  // print(response);
+                  dynamic response = await get("/api/account/test");
+                  print(response);
                 },
-                child: const Text("请求"))
+                child: const Text("请求")),
+            OutlinedButton(
+                onPressed: () async {
+                  // print(SpUtil() == SpUtil());
+                  setState(() {
+                    SpUtil().localSet("test", "我是缓存内容1");
+                  });
+                },
+                child: const Text("设置缓存")),
           ],
         )),
       ),

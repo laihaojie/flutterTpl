@@ -22,6 +22,8 @@ class Http {
 
     dio = Dio(options);
     dio.options.baseUrl = App.baseUrl;
+    dio.options.connectTimeout = App.connectTimeout;
+    dio.options.receiveTimeout = App.receiveTimeout;
     // 添加request拦截器
     dio.interceptors.add(RequestInterceptor());
   }

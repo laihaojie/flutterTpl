@@ -6,7 +6,9 @@ import 'package:flutter_tpl/request2/http_utils.dart';
 import 'package:flutter_tpl/utils/constant.dart';
 import 'package:flutter_tpl/utils/storage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initStore();
   runApp(const MyApp());
 }
 
@@ -14,9 +16,9 @@ Future<void> initStore() async {
   // 初始化本地存储类d
   await SpUtil().init();
   // 初始化request类
-  HttpUtils.init(
-    baseUrl: App.baseUrl,
-  );
+  // HttpUtils.init(
+  //   baseUrl: App.baseUrl,
+  // );
   // 全局注入
   // print("全局注入");
 }

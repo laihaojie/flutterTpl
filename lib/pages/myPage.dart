@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tpl/utils/storage.dart';
 
 class MyPage extends StatefulWidget {
   MyPage({Key? key}) : super(key: key);
@@ -12,7 +13,12 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Expanded(child: Text("")),
+        Expanded(
+            child: ElevatedButton(
+                onPressed: () {
+                  SpUtil().localSet("test", "认34");
+                },
+                child: Text("ssss"))),
         Container(
           width: double.infinity,
           margin: const EdgeInsets.all(10),

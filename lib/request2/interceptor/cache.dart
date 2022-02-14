@@ -74,7 +74,7 @@ class NetCacheInterceptor extends Interceptor {
 
       // 2 磁盘缓存
       if (cacheDisk) {
-        var cacheData = SpUtil().getJSON(key);
+        var cacheData = SpUtil().localGet(key);
         if (cacheData != null) {
           return;
         }
@@ -105,7 +105,7 @@ class NetCacheInterceptor extends Interceptor {
 
       // 磁盘缓存
       if (options.extra["cacheDisk"] == true) {
-        await SpUtil().setJSON(key, object.data);
+        await SpUtil().localSet(key, object.data);
       }
 
       // 内存缓存

@@ -6,9 +6,7 @@ class SpUtil {
   SpUtil._internal();
   static final SpUtil _instance = SpUtil._internal();
 
-  factory SpUtil() {
-    return _instance;
-  }
+  factory SpUtil() => _instance;
 
   SharedPreferences? prefs;
 
@@ -16,12 +14,12 @@ class SpUtil {
     prefs = await SharedPreferences.getInstance();
   }
 
-  Future<bool> setJSON(String key, dynamic jsonVal) {
+  Future<bool> localSet(String key, dynamic jsonVal) {
     String jsonString = jsonEncode(jsonVal);
     return prefs!.setString(key, jsonString);
   }
 
-  dynamic getJSON(String key) {
+  dynamic localGet(String key) {
     String? jsonString = prefs?.getString(key);
     return jsonString == null ? null : jsonDecode(jsonString);
   }
