@@ -151,3 +151,7 @@ class ApiResponse {
 Future get(String path, {Map<String, dynamic>? params}) {
   return Http().get(path, params: params);
 }
+
+Future post(String path, {data}) {
+  return Http().post(path, data: data);
+}

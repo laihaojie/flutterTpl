@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tpl/pages/chars.dart';
 import 'package:flutter_tpl/pages/homePage.dart';
 import 'package:flutter_tpl/pages/myPage.dart';
 
@@ -12,8 +13,8 @@ class BottomNavigationWidget extends StatefulWidget {
 class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   final _bottomNavigationColor = Colors.blue;
   int _currentIndex = 0;
-  
-  List<Widget> list = [const HomePage(), MyPage()];
+
+  List<Widget> list = [const HomePage(), MyPage(), ChartPage1()];
 
   @override
   void initState() {
@@ -38,6 +39,12 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                 color: _bottomNavigationColor,
               ),
               label: '我的'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.email,
+                color: _bottomNavigationColor,
+              ),
+              label: '图'),
         ],
         currentIndex: _currentIndex,
         onTap: (int index) {

@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               "首页$test",
-              style: TextStyle(color: Utils.cl("#000")),
+              style: TextStyle(color: Utils.cl("#027AFF")),
             ),
             ElButton(
               "text",
@@ -67,12 +67,20 @@ class _HomePageState extends State<HomePage> {
                   dynamic response = await get("/api/account/test");
                   print(response);
                 },
-                child: const Text("请求")),
+                child: const Text("GET请求")),
+            ElevatedButton(
+                onPressed: () async {
+                  dynamic response = await post("/api/account/post",
+                      data: {"ds": SpUtil().localGet("token")});
+                  print(response);
+                },
+                child: const Text("POST请求")),
             OutlinedButton(
                 onPressed: () async {
                   // print(SpUtil() == SpUtil());
                   setState(() {
                     SpUtil().localSet("test", "我是缓存内容1");
+                    SpUtil().localSet("token", "fafdafadfer234ewf2");
                   });
                 },
                 child: const Text("设置缓存")),
