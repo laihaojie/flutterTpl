@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tpl/models/apiResponse.dart';
 import 'package:flutter_tpl/utils/constant.dart';
 import 'package:flutter_tpl/utils/util.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -79,7 +78,7 @@ class Http {
     }
     if (result.code != null) {
       Fluttertoast.showToast(
-          msg: "服务器繁忙",
+          msg: result.message ?? "服务器繁忙",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -152,6 +151,6 @@ Future get(String path, {Map<String, dynamic>? params}) {
   return Http().get(path, params: params);
 }
 
-Future post(String path, {data}) {
+Future post(String path, {Map<String, dynamic>? data}) {
   return Http().post(path, data: data);
 }
