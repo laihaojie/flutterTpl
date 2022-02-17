@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               "首页$test",
-              style: TextStyle(color: Utils.cl("#027AFF")),
+              style: TextStyle(color: Utils.color("#027AFF")),
             ),
             ElButton(
               "text",

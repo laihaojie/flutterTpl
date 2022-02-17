@@ -83,7 +83,7 @@ class Http {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Utils.cl("#ccc"),
+          backgroundColor: Utils.color("#ccc"),
           textColor: Colors.white,
           fontSize: 16.0);
     }
