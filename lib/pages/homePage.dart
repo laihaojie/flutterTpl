@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,8 @@ import 'package:flutter_tpl/components/button/button.dart';
 import 'package:flutter_tpl/models/test.dart';
 import 'package:flutter_tpl/request/request.dart';
 import 'package:flutter_tpl/request2/http_request.dart';
+import 'package:flutter_tpl/routers/fluro_navigator.dart';
+import 'package:flutter_tpl/routers/routers.dart';
 import 'package:flutter_tpl/utils/storage.dart';
 
 import 'package:flutter_tpl/utils/util.dart';
@@ -19,6 +23,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late String test;
+  Timer? countdownTimer;
+  int seconds = 10;
 
   @override
   void initState() {
@@ -47,17 +53,17 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.amberAccent,
         ),
         body: Center(
-            child: Column(
-          children: [
-            Text(
-              "首页$test",
-              style: TextStyle(color: Utils.color("#027AFF")),
-            ),
-            ElButton(
-              "text",
-              onPressed: fun,
-            ),
-            ElevatedButton(
+          child: Column(
+            children: [
+              Text(
+                "首页$test",
+                style: TextStyle(color: Utils.color("#027AFF")),
+              ),
+              ElButton(
+                "text",
+                onPressed: fun,
+              ),
+              ElevatedButton(
                 onPressed: () async {
                   // httpGet();
                   // dynamic response = await HttpUtils.get(
@@ -67,15 +73,18 @@ class _HomePageState extends State<HomePage> {
                   dynamic response = await get("/api/account/test");
                   print(response);
                 },
-                child: const Text("GET请求")),
-            ElevatedButton(
+                child: const Text("GET请求"),
+              ),
+              ElevatedButton(
                 onPressed: () async {
-                  dynamic response = await post("/api/account/post",
-                      data: {"ds": SpUtil().localGet("token")});
+                  dynamic response = await post("/api/account/post", data: {
+                    "ds": SpUtil().localGet("token"),
+                  });
                   print(response);
                 },
-                child: const Text("POST请求")),
-            OutlinedButton(
+                child: const Text("POST请求"),
+              ),
+              OutlinedButton(
                 onPressed: () async {
                   // print(SpUtil() == SpUtil());
                   setState(() {
@@ -83,9 +92,37 @@ class _HomePageState extends State<HomePage> {
                     SpUtil().localSet("token", "fafdafadfer234ewf2");
                   });
                 },
-                child: const Text("设置缓存")),
-          ],
-        )),
+                child: const Text("设置缓存"),
+              ),
+              Text("倒计时$seconds"),
+              OutlinedButton(
+                onPressed: () {
+                  if (countdownTimer != null) {
+                    return;
+                  }
+                  countdownTimer =
+                      Timer.periodic(const Duration(seconds: 1), (timer) {
+                    setState(() {
+                      if (seconds > 0) {
+                        seconds--;
+                      } else {
+                        countdownTimer?.cancel();
+                        countdownTimer = null;
+                      }
+                    });
+                  });
+                },
+                child: const Text("开始倒计时"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  NavigatorUtils.push(context, Routes.me);
+                },
+                child: const Text("跳转"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

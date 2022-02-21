@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tpl/bottomNavigation.dart';
-import 'package:flutter_tpl/pages/homePage.dart';
 import 'package:flutter_tpl/pages/myPage.dart';
-import 'package:flutter_tpl/request2/http_utils.dart';
-import 'package:flutter_tpl/utils/constant.dart';
+import 'package:flutter_tpl/routers/routers.dart';
 import 'package:flutter_tpl/utils/storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initStore();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<void> initStore() async {
@@ -24,7 +22,9 @@ Future<void> initStore() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key) {
+    Routes.initRoutes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: const BottomNavigationWidget(),
+      onGenerateRoute: Routes.router.generator,
     );
   }
 }
