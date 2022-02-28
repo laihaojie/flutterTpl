@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tpl/pages/chars.dart';
+import 'package:flutter_tpl/pages/detail.dart';
 import 'package:flutter_tpl/pages/homePage.dart';
 import 'package:flutter_tpl/pages/myPage.dart';
 
@@ -8,10 +9,11 @@ import 'i_router.dart';
 import 'not_found_page.dart';
 
 class Routes {
+  static String webViewPage = '/webView';
   static String home = '/home';
   static String me = '/me';
   static String charts = '/charts';
-  static String webViewPage = '/webView';
+  static String detail = '/detail';
 
   static final List<IRouterProvider> _listRouter = [];
 
@@ -25,21 +27,40 @@ class Routes {
       return const NotFoundPage();
     });
 
-    router.define(home,
-        handler: Handler(
-            handlerFunc:
-                (BuildContext? context, Map<String, List<String>> params) =>
-                    const HomePage()));
-    router.define(me,
-        handler: Handler(
-            handlerFunc:
-                (BuildContext? context, Map<String, List<String>> params) =>
-                    MyPage()));
-    router.define(charts,
-        handler: Handler(
-            handlerFunc:
-                (BuildContext? context, Map<String, List<String>> params) =>
-                    ChartPage1()));
+    router.define(
+      home,
+      handler: Handler(
+        handlerFunc:
+            (BuildContext? context, Map<String, List<String>> params) =>
+                const HomePage(),
+      ),
+    );
+    router.define(
+      me,
+      handler: Handler(
+        handlerFunc:
+            (BuildContext? context, Map<String, List<String>> params) =>
+                MyPage(),
+      ),
+    );
+
+    router.define(
+      charts,
+      handler: Handler(
+        handlerFunc:
+            (BuildContext? context, Map<String, List<String>> params) =>
+                ChartPage1(),
+      ),
+    );
+    
+    router.define(
+      detail,
+      handler: Handler(
+        handlerFunc:
+            (BuildContext? context, Map<String, List<String>> params) =>
+                DetailPage(),
+      ),
+    );
 
     // router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
     //   final String title = params['title']?.first ?? '';

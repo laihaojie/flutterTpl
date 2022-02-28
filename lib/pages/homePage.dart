@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tpl/components/button/button.dart';
 import 'package:flutter_tpl/models/test.dart';
+import 'package:flutter_tpl/pages/detail.dart';
 import 'package:flutter_tpl/request/request.dart';
 import 'package:flutter_tpl/request2/http_request.dart';
 import 'package:flutter_tpl/routers/fluro_navigator.dart';
@@ -116,7 +118,12 @@ class _HomePageState extends State<HomePage> {
               ),
               OutlinedButton(
                 onPressed: () {
-                  NavigatorUtils.push(context, Routes.me);
+                  // Navigator.of(context).push(
+                  //   CupertinoPageRoute(builder: (_) {
+                  //     return DetailPage();
+                  //   }),
+                  // );
+                  NavigatorUtils.push(context, Routes.detail);
                 },
                 child: const Text("跳转"),
               ),
